@@ -55,7 +55,7 @@ An immersive astronomy explorer built with **Python**, **Streamlit**, **JavaScri
 
 <p align="center">
 <img src="assets/random.png" width="48%">
-<img src="assets/explanation.png" width="48%">
+<img src="assets/explaination.png" width="48%">
 </p>
 
 ---
