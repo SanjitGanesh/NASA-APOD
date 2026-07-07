@@ -70,7 +70,7 @@ st.sidebar.markdown(
 @st.cache_data(show_spinner=False)
 def fetch_apod_data(selected_date):
     date_str = selected_date.strftime("%Y-%m-%d")
-    api_key = "nEKlezdG2FILT2Vud2TMgV2ValnrUXFhx7pCrOvw"
+    api_key = st.secrets.get("NASA_API_KEY", "DEMO_KEY")
     url = f"https://api.nasa.gov/planetary/apod?api_key={api_key}&date={date_str}"
     
     try:
