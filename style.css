@@ -1,0 +1,307 @@
+/* Global background and font styling */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+/* Force Streamlit theme variables to Dark Mode values */
+:root, .stApp, [data-testid="stApp"], [data-testid="stAppViewContainer"] {
+    --text-color: #f0f0f8 !important;
+    --background-color: transparent !important;
+    --secondary-background-color: rgba(255, 255, 255, 0.05) !important;
+    --primary-color: #c084fc !important;
+    --font: 'Space Grotesk', sans-serif !important;
+}
+
+/* Force dark color styles for widgets, inputs, and form controls */
+input, select, textarea, [data-baseweb="select"], [data-baseweb="popover"] {
+    color: #f0f0f8 !important;
+    background-color: rgba(9, 8, 22, 0.9) !important;
+}
+
+.block-container {
+    padding-top: 0rem !important;
+}
+/* Apply transparency to Streamlit elements so the background canvas is visible */
+html, 
+[data-testid="stAppViewContainer"], 
+[data-testid="stHeader"],
+[data-testid="stApp"],
+[data-testid="stMain"],
+[data-testid="stMainBlockContainer"],
+.stApp,
+.main,
+.block-container {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: #f0f0f8 !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+}
+
+/* Apply gradient to the parent document body */
+body {
+    background: linear-gradient(135deg, #090816 0%, #05040d 60%, #150a25 100%) !important;
+    color: #f0f0f8 !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    overflow-x: hidden;
+}
+
+/* Sidebar styling - keep it slightly translucent glassmorphic */
+[data-testid="stSidebar"] {
+    background-color: rgba(9, 8, 22, 0.94) !important;
+    backdrop-filter: blur(15px);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Custom column card styles - tighter padding and sharp corners for boxy look */
+[data-testid="column"] {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-radius: 12px !important;
+    padding: 24px !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(12px) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4) !important;
+    margin-bottom: 20px !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+[data-testid="column"]:hover {
+    transform: translateY(-2px) !important;
+    border-color: rgba(167, 139, 250, 0.35) !important;
+    box-shadow: 0 12px 30px 0 rgba(167, 139, 250, 0.15) !important;
+}
+
+/* Custom layout spacing for columns to prevent overlap */
+div[data-testid="stHorizontalBlock"] {
+    gap: 2rem !important;
+}
+
+/* Header gradient text - boxy/technical tracking */
+.gradient-text {
+    background: linear-gradient(90deg, #c084fc 0%, #f472b6 50%, #fb7185 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 2.3rem;
+    margin-bottom: 2px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    text-shadow: 0 0 40px rgba(192, 132, 252, 0.1);
+}
+
+/* Subheader styling */
+.cosmic-subheader {
+    color: #94a3b8;
+    font-weight: 400;
+    font-size: 1.05rem;
+    margin-top: 2px;
+    margin-bottom: 22px;
+    letter-spacing: 0.5px;
+}
+
+/* Image containment to keep layout on one viewport height */
+[data-testid="stImage"] img {
+    max-height: 68vh !important;
+    object-fit: contain !important;
+    border-radius: 8px !important;
+    width: auto !important;
+    margin: 0 auto !important;
+    display: block !important;
+}
+
+/* Metadata badges - boxy formal design */
+.badge-container {
+    margin-top: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.badge {
+    background: rgba(167, 139, 250, 0.12) !important;
+    border: 1px solid rgba(167, 139, 250, 0.3) !important;
+    color: #c084fc !important;
+    padding: 6px 14px !important;
+    border-radius: 4px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.2px;
+}
+.badge-secondary {
+    background: rgba(56, 189, 248, 0.12) !important;
+    border: 1px solid rgba(56, 189, 248, 0.3) !important;
+    color: #38bdf8 !important;
+}
+
+/* Scientific explanations styling */
+.explanation-header {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+.explanation-text {
+    line-height: 1.7;
+    color: #94a3b8;
+    font-size: 0.98rem;
+    text-align: justify;
+}
+.explanation-text::first-letter {
+    float: left;
+    font-size: 3rem;
+    line-height: 0.85;
+    font-weight: 700;
+    margin-right: 8px;
+    margin-top: 4px;
+    color: #c084fc;
+    text-shadow: 0 0 15px rgba(192, 132, 252, 0.5);
+}
+
+/* Style the Streamlit Expander */
+[data-testid="stExpander"] {
+    background: rgba(255, 255, 255, 0.01) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 10px !important;
+}
+[data-testid="stExpander"] summary {
+    font-weight: 600 !important;
+    color: #cbd5e1 !important;
+}
+
+/* Hide default streamlit decorations */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+
+/* Custom styled HD View button - boxy styled */
+.hd-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.08) 0%, rgba(244, 114, 182, 0.08) 100%);
+    border: 1px solid rgba(167, 139, 250, 0.35);
+    color: #c084fc !important;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 15px;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.hd-button:hover {
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.2) 0%, rgba(244, 114, 182, 0.2) 100%);
+    border-color: rgba(167, 139, 250, 0.6);
+    color: #ffffff !important;
+    box-shadow: 0 6px 20px rgba(167, 139, 250, 0.25);
+    transform: translateY(-1px);
+}
+
+/* Faded clean divider */
+hr {
+    border: 0 !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0) 100%) !important;
+    margin: 24px 0 !important;
+}
+
+/* Streamlit Sidebar controls polish - boxy styled */
+div[data-testid="stSidebar"] button {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    color: #f0f0f8 !important;
+    border-radius: 8px !important;
+    transition: all 0.25s ease !important;
+    font-weight: 600 !important;
+    padding: 6px 12px !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem !important;
+}
+div[data-testid="stSidebar"] button:hover {
+    background: rgba(167, 139, 250, 0.08) !important;
+    border-color: rgba(167, 139, 250, 0.35) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(167, 139, 250, 0.15);
+    transform: translateY(-1px);
+}
+
+/* Date input styling */
+div[data-testid="stSidebar"] div[data-baseweb="input"] {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 8px !important;
+    transition: all 0.25s ease !important;
+}
+div[data-testid="stSidebar"] div[data-baseweb="input"]:focus-within {
+    border-color: rgba(167, 139, 250, 0.4) !important;
+    box-shadow: 0 0 12px rgba(167, 139, 250, 0.15) !important;
+}
+
+/* Loader overlay for blurred loading screen */
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(9, 8, 22, 0.65) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    z-index: 999999 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.loader-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(167, 139, 250, 0.1);
+    border-top: 4px solid #a78bfa;
+    border-radius: 50%;
+    animation: spin 1s linear infinite, glow 2s ease-in-out infinite alternate;
+}
+
+.loader-text {
+    margin-top: 24px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #a78bfa, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 10px rgba(167, 139, 250, 0.2); }
+    100% { box-shadow: 0 0 25px rgba(167, 139, 250, 0.6); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
