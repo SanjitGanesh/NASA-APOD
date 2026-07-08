@@ -1,8 +1,12 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import requests
-from datetime import datetime, date, timedelta
+from datetime import datetime, date, timedelta, timezone
 import random
+
+# Calculate today's date in US Eastern Time (EST/EDT) to align with NASA APOD's publishing clock
+est_offset = timezone(timedelta(hours=-5))
+est_today = datetime.now(timezone.utc).astimezone(est_offset).date()
 
 # 1. Set Page Configuration (must be the first Streamlit command)
 st.set_page_config(
@@ -14,7 +18,7 @@ st.set_page_config(
 
 # 2. Session State Management for Date Selection
 if "active_date" not in st.session_state:
-    st.session_state.active_date = date.today()
+    st.session_state.active_date = est_today
 
 # 3. Sidebar - Navigation & Controls
 st.sidebar.markdown('<p style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0px; background: linear-gradient(90deg, #a78bfa, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Cosmic Control</p>', unsafe_allow_html=True)
@@ -25,7 +29,7 @@ selected_date = st.sidebar.date_input(
     "Select Date",
     value=st.session_state.active_date,
     min_value=date(1995, 6, 16), # NASA APOD start date
-    max_value=date.today()
+    max_value=est_today
 )
 
 # Sync manual date picker interaction to st.session_state.active_date
@@ -40,7 +44,7 @@ col_side1, col_side2 = st.sidebar.columns(2)
 with col_side1:
     if st.button("Randomize !", use_container_width=True):
         start_date = date(1995, 6, 16)
-        end_date = date.today()
+        end_date = est_today
         days_between = (end_date - start_date).days
         random_days = random.randint(0, days_between)
         random_date = start_date + timedelta(days=random_days)
@@ -50,9 +54,8 @@ with col_side1:
 
 with col_side2:
     if st.button("Today", use_container_width=True):
-        today = date.today()
-        st.session_state.active_date = today
-        st.session_state.date_picker = today
+        st.session_state.active_date = est_today
+        st.session_state.date_picker = est_today
         st.rerun()
 
 st.sidebar.markdown("---")
@@ -115,6 +118,7 @@ try:
     window.cosmicRerunToken = "{rerun_token}";
     window.cosmicTargetMediaUrl = "{target_url}";
     window.cosmicTargetMediaType = "{target_type}";
+    window.cosmicErrorOccurred = {str(error is not None).lower()};
     """
     components.html(f"<script>{js_args}\n{js_content}</script>", height=0, width=0)
 except Exception as e:

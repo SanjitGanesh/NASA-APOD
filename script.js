@@ -3,6 +3,7 @@ const parentWin = window.parent;
 const currentToken = window.cosmicRerunToken;
 const targetUrl = window.cosmicTargetMediaUrl;
 const targetType = window.cosmicTargetMediaType;
+const errorOccurred = window.cosmicErrorOccurred;
 
 // Force native dark theme inside parent localStorage and reload once to apply if needed
 try {
@@ -234,7 +235,7 @@ function checkMediaLoaded() {
         } else if (currentTargetType === 'video' && video) {
             // New video is rendered in DOM
             hideLoader();
-        } else if (errorNotify) {
+        } else if (errorOccurred || errorNotify) {
             // An error has occurred, clear loader
             hideLoader();
         } else {
