@@ -84,9 +84,19 @@ def fetch_apod_data(selected_date):
             return None, "NASA API Rate limit reached. Try again with a different key or wait."
         else:
             try:
-                err = response.json().get("error", {}).get("message", "Unknown API error.")
+                res_json = response.json()
+                if isinstance(res_json, dict):
+                    err = res_json.get("msg") or res_json.get("error_message")
+                    if not err and isinstance(res_json.get("error"), dict):
+                        err = res_json.get("error", {}).get("message")
+                    if not err and isinstance(res_json.get("error"), str):
+                        err = res_json.get("error")
+                    if not err:
+                        err = f"API error (status {response.status_code})"
+                else:
+                    err = f"API returned status code {response.status_code}"
             except Exception:
-                err = f"API returned status code {response.status_code}."
+                err = f"API returned status code {response.status_code}"
             return None, err
     except requests.exceptions.RequestException as e:
         return None, f"Network connection failed: {str(e)}"
